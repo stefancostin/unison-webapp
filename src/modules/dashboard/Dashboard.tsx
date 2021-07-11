@@ -1,5 +1,6 @@
 import './styles.scss';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   ApartmentOutlined,
@@ -10,8 +11,8 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { DashboardRoutes, GeneralRoutes } from 'router/routes';
+import DashboardRouter from 'router/DashboardRouter';
 import Breadcrumb from 'components/breadcrumb';
-import { useHistory } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -52,9 +53,9 @@ export const Dashboard = (): JSX.Element => {
         <Header className="site-layout-background" style={{ padding: 0 }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb />
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            Bill is a cat.
-          </div>
+          <section className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+            <DashboardRouter />
+          </section>
         </Content>
         <Footer className="footer">
           <b>Unison</b>©2021

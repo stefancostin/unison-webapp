@@ -1,5 +1,7 @@
 import { Route } from './types';
 
+export type ApplicationRoutes = typeof GeneralRoutes | typeof DashboardRoutes;
+
 export enum GeneralRoutes {
   Account = 'account',
   Dashboard = 'dashboard',
