@@ -9,15 +9,22 @@ import {
   SyncOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import { DashboardRoutes, GeneralRoutes } from 'router/routes';
 import Breadcrumb from 'components/breadcrumb';
+import { useHistory } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 export const Dashboard = (): JSX.Element => {
+  const history = useHistory();
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
   const onCollapse = (): void => {
     setCollapsed(!collapsed);
+  };
+
+  const handleRouteChange = (route: DashboardRoutes) => {
+    history.push(`/${GeneralRoutes.Dashboard}/${route}`);
   };
 
   return (
@@ -27,16 +34,16 @@ export const Dashboard = (): JSX.Element => {
           <span>{collapsed ? 'U' : 'Unison'}</span>
         </div>
         <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline">
-          <Menu.Item key="1" icon={<ApartmentOutlined />}>
+          <Menu.Item key="1" icon={<ApartmentOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Nodes)}>
             Nodes
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
+          <Menu.Item key="2" icon={<DesktopOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Agents)}>
             Agents
           </Menu.Item>
-          <Menu.Item key="3" icon={<SyncOutlined />}>
+          <Menu.Item key="3" icon={<SyncOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Entities)}>
             Entities
           </Menu.Item>
-          <Menu.Item key="4" icon={<EyeOutlined />}>
+          <Menu.Item key="4" icon={<EyeOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Logs)}>
             Logs
           </Menu.Item>
         </Menu>

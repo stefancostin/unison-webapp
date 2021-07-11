@@ -9,8 +9,10 @@ const Breadcrumb = (): JSX.Element => {
 
   return (
     <AntBreadcrumb className="breadcrumb-container">
-      {routeMapping.map(route => (
-        <AntBreadcrumb.Item className="breadcrumb-item">{route}</AntBreadcrumb.Item>
+      {routeMapping.map((route: string, index: number) => (
+        <AntBreadcrumb.Item key={index} className="breadcrumb-item">
+          {route}
+        </AntBreadcrumb.Item>
       ))}
     </AntBreadcrumb>
   );
