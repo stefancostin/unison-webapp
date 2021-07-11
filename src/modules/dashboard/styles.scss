@@ -1,0 +1,24 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 2;
+
+  &.collapsed {
+    font-size: 20px;
+    line-height: 1.75;
+    font-weight: bold;
+  }
+}
+
+.site-layout .site-layout-background {
+  background-color: #ffffff;
+}
+
+.footer {
+  text-align: center;
+  background-color: #f0f0f0;
+}

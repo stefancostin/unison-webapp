@@ -1,8 +1,7 @@
 import { Result, Button } from 'antd';
-import "antd/dist/antd.css";
 
 const ErrorPage = (): JSX.Element => (
-   <Result
+  <Result
     status="500"
     title="500"
     subTitle="Sorry, something went wrong."

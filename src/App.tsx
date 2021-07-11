@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
+import 'antd/dist/antd.css';
 import Router from 'router';
 
 function App() {
