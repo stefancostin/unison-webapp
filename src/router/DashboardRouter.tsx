@@ -1,18 +1,37 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import EntityPage from '../modules/entity-page/EntityPage';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { DashboardRoutes } from './routes';
+import AgentsPage from 'modules/agents-page';
+import EntitiesPage from 'modules/entities-page';
+import LogsPage from 'modules/logs-page';
+import NodesPage from 'modules/nodes-page';
+import NodeControlPage from 'modules/node-control-page';
 
 const DashboardRouter = (): JSX.Element => {
   let { path, url } = useRouteMatch();
 
   return (
     <Switch>
-      <Route exact path={path}>
-        <EntityPage />
+      <Route path={`${path}/${DashboardRoutes.Agents}`}>
+        <AgentsPage />
       </Route>
       <Route path={`${path}/${DashboardRoutes.Entities}`}>
-        <EntityPage />
+        <EntitiesPage />
+      </Route>
+      <Route path={`${path}/${DashboardRoutes.Logs}`}>
+        <LogsPage />
+      </Route>
+      <Route path={`${path}/${DashboardRoutes.Nodes}/add`}>
+        <NodeControlPage />
+      </Route>
+      <Route path={`${path}/${DashboardRoutes.Nodes}/:id/edit`}>
+        <NodeControlPage />
+      </Route>
+      <Route path={`${path}/${DashboardRoutes.Nodes}`}>
+        <NodesPage />
+      </Route>
+      <Route path="*">
+        <Redirect to="/page-not-found" />
       </Route>
     </Switch>
   );

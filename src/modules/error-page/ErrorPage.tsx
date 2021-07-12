@@ -1,12 +1,19 @@
 import { Result, Button } from 'antd';
+import { ErrorPageProps } from './types';
 
-const ErrorPage = (): JSX.Element => (
-  <Result
-    status="500"
-    title="500"
-    subTitle="Sorry, something went wrong."
-    extra={<Button type="primary">Back Home</Button>}
-  />
-);
+const DefaultStatus = '500';
+
+const ErrorPage = (props: ErrorPageProps): JSX.Element => {
+  const { title, status } = props;
+
+  return (
+    <Result
+      status={status || DefaultStatus}
+      title={title || DefaultStatus}
+      subTitle="Sorry, something went wrong."
+      extra={<Button type="primary">Back Home</Button>}
+    />
+  );
+};
 
 export default ErrorPage;

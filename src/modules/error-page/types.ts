@@ -1,3 +1,6 @@
+import { ResultStatusType } from 'antd/lib/result';
+
 export type ErrorPageProps = {
-  text: string;
+  title?: string;
+  status?: ResultStatusType;
 };
