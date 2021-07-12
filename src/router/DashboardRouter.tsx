@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { DashboardRoutes } from './routes';
-import AgentsPage from 'modules/agents-page';
+import AgentsPage from 'modules/agents/agents-page';
 import EntitiesPage from 'modules/entities-page';
 import LogsPage from 'modules/logs-page';
-import NodesPage from 'modules/nodes-page';
-import NodeControlPage from 'modules/node-control-page';
+import NodesPage from 'modules/nodes/nodes-page';
+import NodeControlPage from 'modules/nodes/node-control-page';
 
 const DashboardRouter = (): JSX.Element => {
   let { path, url } = useRouteMatch();

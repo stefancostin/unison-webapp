@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { DropdownMenuItem } from 'components/dropdown/types';
+import { mockNodes } from 'modules/nodes/mock-data';
 import Dropdown from 'components/dropdown';
-
-const mockNodes = [
-  { name: 'Node One', id: 1 },
-  { name: 'Node Two', id: 2 },
-];
 
 const EntitiesPage = (): JSX.Element => {
   const [tmpSelected, setTmpSelected] = useState<number>();
