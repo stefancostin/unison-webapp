@@ -1,6 +1,7 @@
 import './styles.scss';
 import AntBreadcrumb from 'antd/lib/breadcrumb';
 import { useLocation } from 'react-router-dom';
+import { capitalize } from 'lodash';
 
 const Breadcrumb = (): JSX.Element => {
   const location = useLocation();
@@ -11,7 +12,7 @@ const Breadcrumb = (): JSX.Element => {
     <AntBreadcrumb className="breadcrumb-container">
       {routeMapping.map((route: string, index: number) => (
         <AntBreadcrumb.Item key={index} className="breadcrumb-item">
-          {route}
+          {capitalize(route)}
         </AntBreadcrumb.Item>
       ))}
     </AntBreadcrumb>

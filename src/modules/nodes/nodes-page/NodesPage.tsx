@@ -1,16 +1,24 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Space, Table } from 'antd';
-import { UserAction } from 'types/ui-actions/UserAction';
+import { Button, Table } from 'antd';
 import { TableColumn } from 'types/table-metadata/TableColumn';
 import { Node } from 'types/nodes/Node';
 import { NodeTableData } from 'types/nodes/NodeTableData';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch } from 'store';
+import { getNodeListAction } from 'store/actions/node-list-actions';
+import Actions from 'components/actions';
+import { deleteNodeFormAction } from 'store/actions/node-form-actions';
+import { useHistory } from 'react-router-dom';
 
-const columns: TableColumn<Node>[] = [
+const columns: TableColumn<NodeTableData>[] = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+  },
+  {
+    title: 'Description',
+    dataIndex: 'description',
+    key: 'description',
   },
   {
     title: 'Agents',
@@ -21,11 +29,8 @@ const columns: TableColumn<Node>[] = [
   {
     title: 'Action',
     key: 'action',
-    render: (text: string, record?: Node): JSX.Element => (
-      <Space size="middle">
-        <a>Edit {record?.name}</a>
-        <a>Delete</a>
-      </Space>
+    render: (text: string, record?: NodeTableData): JSX.Element => (
+      <Actions id={Number(record.key)} handleDelete={deleteNodeFormAction} />
     ),
   },
 ];
@@ -34,37 +39,38 @@ const data: NodeTableData[] = [
   {
     key: '1',
     name: 'Restaurant Node',
+    description: 'Client restaurant data',
     agents: ['agent-1', 'agent-2'],
   },
   {
     key: '2',
     name: 'Take Away Node',
+    description: 'Client infrastructure data',
     agents: ['agent-13', 'agent-14', 'agent-15'],
   },
   {
     key: '3',
-    name: 'Manufacturer Node',
+    name: 'Distribution Node',
+    description: 'Client distribution data',
     agents: ['agent-21', 'agent-22', 'agent-23'],
   },
 ];
 
 const NodesPage = (): JSX.Element => {
-  // const [userAction, setUserAction] = useState<UserAction>(UserAction.Read);
+  const dispatch = useAppDispatch();
+  const history = useHistory();
 
-  // if (userAction === UserAction.Read) {
-  //   return (
-  //     <>
-  //       <Button type="primary" style={{ marginBottom: '15px' }} onClick={() => setUserAction(UserAction.Add)}>
-  //         Add Node
-  //       </Button>
-  //       <Table columns={columns} dataSource={data as any} />
-  //     </>
-  //   );
-  // }
+  useEffect(() => {
+    dispatch(getNodeListAction());
+  }, [dispatch]);
+
+  const redirectToAddPage = (): void => {
+    history.push(`${history.location.pathname}/add`);
+  };
 
   return (
     <>
-      <Button type="primary" style={{ marginBottom: '15px' }}>
+      <Button type="primary" className="form-group" onClick={redirectToAddPage}>
         Add Node
       </Button>
       <Table columns={columns} dataSource={data as any} />

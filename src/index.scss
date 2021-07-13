@@ -10,6 +10,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+button {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .label {
   display: block;
   margin-bottom: 5px;
@@ -18,4 +25,9 @@ code {
 
 .form-group {
   margin-bottom: 20px;
+}
+
+.danger-action {
+  color: #ff0000;
+  cursor: pointer;
 }
