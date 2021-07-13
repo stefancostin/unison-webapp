@@ -1,4 +1,4 @@
-export interface NodeForm {
+export interface NodeSaveRequest {
   name: string;
   description: string;
 }

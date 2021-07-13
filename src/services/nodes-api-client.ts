@@ -1,8 +1,8 @@
-import { NodeHttpClient } from './../types/nodes/NodeHttpClient';
 import axios from 'axios';
+import { NodeHttpClient } from './../types/nodes/NodeHttpClient';
 import { Config } from 'config';
 import { Node } from 'types/nodes/Node';
-import { NodeForm } from 'types/nodes/NodeForm';
+import { NodeSaveRequest } from 'types/nodes/NodeSaveRequest';
 
 const getNode = (id: number): Promise<Node> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
@@ -22,7 +22,7 @@ const getNodes = (): Promise<Node[]> => {
   }
 };
 
-const addNode = (node: NodeForm): Promise<void> => {
+const addNode = (node: NodeSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes`;
   try {
     return axios.post(endpoint, node);

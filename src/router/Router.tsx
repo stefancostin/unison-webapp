@@ -1,10 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Router as ReactRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from 'modules/dashboard';
 import ErrorPage from 'modules/error-page';
 
+export const history = createBrowserHistory();
+
 const Router = (): JSX.Element => (
-  <BrowserRouter>
+  <ReactRouter history={history}>
     <Switch>
       <Route path="/dashboard">
         <Dashboard />
@@ -13,7 +16,7 @@ const Router = (): JSX.Element => (
         <ErrorPage title="404" status="404" />
       </Route>
     </Switch>
-  </BrowserRouter>
+  </ReactRouter>
 );
 
 export default Router;

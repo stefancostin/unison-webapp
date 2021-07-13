@@ -35,7 +35,6 @@ const NodeControlPage = (): JSX.Element => {
   }, [id]);
 
   const handleSave = (): void => {
-    console.log('a', userAction);
     if (userAction === UserAction.Add) {
       dispatch(addNodeFormAction(form));
       return;

@@ -13,22 +13,22 @@ const DashboardRouter = (): JSX.Element => {
 
   return (
     <Switch>
-      <Route path={[`${path}/${DashboardRoutes.Agents}/add`, `${path}/${DashboardRoutes.Agents}/:id/edit`]}>
+      <Route exact path={[`${path}/${DashboardRoutes.Agents}/add`, `${path}/${DashboardRoutes.Agents}/:id/edit`]}>
         <AgentControlPage />
       </Route>
-      <Route path={`${path}/${DashboardRoutes.Agents}`}>
+      <Route exact path={`${path}/${DashboardRoutes.Agents}`}>
         <AgentsPage />
       </Route>
-      <Route path={`${path}/${DashboardRoutes.Entities}`}>
+      <Route exact path={`${path}/${DashboardRoutes.Entities}`}>
         <EntitiesPage />
       </Route>
-      <Route path={`${path}/${DashboardRoutes.Logs}`}>
+      <Route exact path={`${path}/${DashboardRoutes.Logs}`}>
         <LogsPage />
       </Route>
-      <Route path={[`${path}/${DashboardRoutes.Nodes}/add`, `${path}/${DashboardRoutes.Nodes}/:id/edit`]}>
+      <Route exact path={[`${path}/${DashboardRoutes.Nodes}/add`, `${path}/${DashboardRoutes.Nodes}/:id/edit`]}>
         <NodeControlPage />
       </Route>
-      <Route path={`${path}/${DashboardRoutes.Nodes}`}>
+      <Route exact path={`${path}/${DashboardRoutes.Nodes}`}>
         <NodesPage />
       </Route>
       <Route path="*">

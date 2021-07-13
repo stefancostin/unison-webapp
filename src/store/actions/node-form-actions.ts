@@ -1,8 +1,10 @@
-import { GeneralRoutes, DashboardRoutes } from 'router/routes';
 import nodeHttpClient from 'services/nodes-api-client';
+import sendNotification from 'services/notification-service';
+import { history } from 'router/Router';
+import { GeneralRoutes, DashboardRoutes } from 'router/routes';
 import { NODE_FORM__CLEAR_PROPERTIES, NODE_FORM__SET_PROPERTIES } from 'store/events';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';
-import { NodeForm } from 'types/nodes/NodeForm';
+import { NodeSaveRequest } from 'types/nodes/NodeSaveRequest';
 import { Node } from 'types/nodes/Node';
 import { getNodeListAction } from './node-list-actions';
 
@@ -18,13 +20,17 @@ export const clearNodeFormAction = (): BaseAction<Partial<Node>> => ({
 
 export const addNodeFormAction = (node: Node): AppThunk => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    const newNode: NodeForm = {
+    const newNode: NodeSaveRequest = {
       name: node.name,
       description: node.description,
     };
+
     // await nodeHttpClient.addNode(newNode);
+
     console.log(node);
-    window.history.pushState(null, ``, `/${GeneralRoutes.Dashboard}/${DashboardRoutes.Nodes}`);
+
+    sendNotification('Operation Successful', 'Node has been added successfully');
+    history.push(`/${GeneralRoutes.Dashboard}/${DashboardRoutes.Nodes}`);
   };
 };
 
