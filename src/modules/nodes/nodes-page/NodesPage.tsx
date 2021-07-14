@@ -1,39 +1,21 @@
 import Actions from 'components/actions';
 import ConfirmationModal from 'components/confirmation-modal';
+import { Node } from 'types/nodes/Node';
 import { Button, Table } from 'antd';
 import { TableColumn } from 'types/table-metadata/TableColumn';
-import { Node } from 'types/nodes/Node';
 import { NodeTableData } from 'types/nodes/NodeTableData';
 import { useEffect, useRef, useState } from 'react';
-import { store, useAppDispatch } from 'store';
+import { store, useAppDispatch, useAppSelector } from 'store';
 import { getNodeListAction } from 'store/actions/node-list-actions';
 import { deleteNodeFormAction } from 'store/actions/node-form-actions';
 import { useHistory } from 'react-router-dom';
-
-const data: NodeTableData[] = [
-  {
-    key: '1',
-    name: 'Restaurant Node',
-    description: 'Client restaurant data',
-    agents: ['agent-1', 'agent-2'],
-  },
-  {
-    key: '2',
-    name: 'Take Away Node',
-    description: 'Client infrastructure data',
-    agents: ['agent-13', 'agent-14', 'agent-15'],
-  },
-  {
-    key: '3',
-    name: 'Distribution Node',
-    description: 'Client distribution data',
-    agents: ['agent-21', 'agent-22', 'agent-23'],
-  },
-];
+import { getNodeTableDataSelector } from 'store/selectors/node-list-selector';
 
 const NodesPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+
+  const data = useAppSelector(getNodeTableDataSelector);
 
   const [isModalVisible, setModalVisible] = useState(false);
   const modalDeleteRef = useRef<number>(null);
@@ -47,7 +29,7 @@ const NodesPage = (): JSX.Element => {
   };
 
   const handleDelete = (id: number): void => {
-    console.log('id: ', id)
+    console.log('id: ', id);
     modalDeleteRef.current = id;
     setModalVisible(true);
   };

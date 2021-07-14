@@ -1,6 +1,6 @@
 import './styles.scss';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   ApartmentOutlined,
@@ -13,6 +13,7 @@ import {
 import { DashboardRoutes, GeneralRoutes } from 'router/routes';
 import DashboardRouter from 'router/DashboardRouter';
 import Breadcrumb from 'components/breadcrumb';
+import { get, isEmpty } from 'lodash';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,13 +29,31 @@ export const Dashboard = (): JSX.Element => {
     history.push(`/${GeneralRoutes.Dashboard}/${route}`);
   };
 
+  const getDefaultKey = (): string => {
+    const routeSegments = history.location.pathname.split('/');
+    const page = get(routeSegments, '2');
+
+    switch (page) {
+      case DashboardRoutes.Nodes:
+        return String(1);
+      case DashboardRoutes.Agents:
+        return String(2);
+      case DashboardRoutes.Entities:
+        return String(3);
+      case DashboardRoutes.Logs:
+        return String(4);
+      default:
+        return String(1);
+    }
+  };
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className={`logo ${collapsed ? 'collapsed' : 'extended'}`}>
           <span>{collapsed ? 'U' : 'Unison'}</span>
         </div>
-        <Menu theme="dark" defaultSelectedKeys={['2']} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys={[getDefaultKey()]} mode="inline">
           <Menu.Item key="1" icon={<ApartmentOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Nodes)}>
             Nodes
           </Menu.Item>
