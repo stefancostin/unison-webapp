@@ -5,5 +5,6 @@ export interface NodeHttpClient {
   getNode: (id: number) => Promise<Node>;
   getNodes: () => Promise<Node[]>;
   addNode: (node: NodeSaveRequest) => Promise<void>;
+  updateNode: (node: NodeSaveRequest) => Promise<void>;
   deleteNode: (id: number) => Promise<void>;
 }

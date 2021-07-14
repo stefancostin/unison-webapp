@@ -31,6 +31,15 @@ const addNode = (node: NodeSaveRequest): Promise<void> => {
   }
 };
 
+const updateNode = (node: NodeSaveRequest): Promise<void> => {
+  const endpoint = `${Config.ApiEndpoint}/nodes/${node.id}`;
+  try {
+    return axios.put(endpoint, node);
+  } catch (error) {
+    return Promise.reject();
+  }
+};
+
 const deleteNode = (id: number): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
   try {
@@ -44,6 +53,7 @@ const nodeHttpClient: NodeHttpClient = {
   getNode,
   getNodes,
   addNode,
+  updateNode,
   deleteNode,
 };
 

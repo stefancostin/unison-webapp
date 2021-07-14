@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
-import { addNodeFormAction, clearNodeFormAction, setNodeFormAction } from 'store/actions/node-form-actions';
+import { addNodeFormAction, clearNodeFormAction, getNodeFormAction, setNodeFormAction, updateNodeFormAction } from 'store/actions/node-form-actions';
 import { getNodeFormSelector } from 'store/selectors/node-form-selector';
 import { UserAction } from 'types/ui-actions/UserAction';
 
@@ -31,13 +31,15 @@ const NodeControlPage = (): JSX.Element => {
       setUserAction(UserAction.Add);
     } else {
       setUserAction(UserAction.Edit);
+      dispatch(getNodeFormAction(Number(id)));
     }
   }, [id]);
 
   const handleSave = (): void => {
     if (userAction === UserAction.Add) {
       dispatch(addNodeFormAction(form));
-      return;
+    } else if (userAction === UserAction.Edit) {
+      dispatch(updateNodeFormAction(form));
     }
   };
 
