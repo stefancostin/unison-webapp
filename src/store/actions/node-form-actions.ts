@@ -32,9 +32,7 @@ export const addNodeFormAction = (node: Node): AppThunk => {
       description: node.description,
     };
 
-    // await nodeHttpClient.addNode(newNode);
-
-    console.log(node);
+    await nodeHttpClient.addNode(newNode);
 
     sendNotification('Operation Successful', 'Node has been added successfully');
     history.push(`/${GeneralRoutes.Dashboard}/${DashboardRoutes.Nodes}`);

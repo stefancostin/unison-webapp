@@ -1,6 +1,7 @@
 import './styles.scss';
+import { get } from 'lodash';
 import { useState } from 'react';
-import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   ApartmentOutlined,
@@ -13,7 +14,6 @@ import {
 import { DashboardRoutes, GeneralRoutes } from 'router/routes';
 import DashboardRouter from 'router/DashboardRouter';
 import Breadcrumb from 'components/breadcrumb';
-import { get, isEmpty } from 'lodash';
 
 const { Header, Content, Footer, Sider } = Layout;
 
