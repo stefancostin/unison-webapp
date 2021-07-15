@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Dropdown from 'components/dropdown';
 import { Button, Col, Input, Row } from 'antd';
 import { isNil } from 'lodash';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { UserAction } from 'types/ui-actions/UserAction';
 import { DropdownMenuItem } from 'components/dropdown/types';
 import { mockNodes } from 'modules/nodes/mock-data';
-import Dropdown from 'components/dropdown';
 
 const EntityControlPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();

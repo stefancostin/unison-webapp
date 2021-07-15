@@ -5,7 +5,7 @@ import { Button, Table } from 'antd';
 import { TableColumn } from 'types/table-metadata/TableColumn';
 import { NodeTableData } from 'types/nodes/NodeTableData';
 import { useEffect, useRef, useState } from 'react';
-import { store, useAppDispatch, useAppSelector } from 'store';
+import { useAppDispatch, useAppSelector } from 'store';
 import { getNodeListAction } from 'store/actions/node-list-actions';
 import { deleteNodeFormAction } from 'store/actions/node-form-actions';
 import { useHistory } from 'react-router-dom';
@@ -29,13 +29,12 @@ const NodesPage = (): JSX.Element => {
   };
 
   const handleDelete = (id: number): void => {
-    console.log('id: ', id);
     modalDeleteRef.current = id;
     setModalVisible(true);
   };
 
   const handleConfirm = (): void => {
-    store.dispatch(deleteNodeFormAction(modalDeleteRef.current));
+    dispatch(deleteNodeFormAction(modalDeleteRef.current));
     modalDeleteRef.current = null;
     setModalVisible(false);
   };

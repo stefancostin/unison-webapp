@@ -1,6 +1,6 @@
 import { TableData } from 'types/table-metadata/TableData';
 
-export interface NodeTableData extends TableData {
+export interface AgentTableData extends TableData {
   instanceId: string;
-  node?: string;
+  node: string;
 }
