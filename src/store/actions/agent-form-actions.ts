@@ -4,7 +4,6 @@ import { history } from 'router/Router';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';
 import { GeneralRoutes, DashboardRoutes } from 'router/routes';
 import { AGENT_FORM__CLEAR_PROPERTIES, AGENT_FORM__SET_PROPERTIES } from 'store/events';
-import { AgentSaveRequest } from './../../types/agents/AgentSaveRequest';
 import { getAgentListAction } from './agent-list-actions';
 import { Agent } from 'types/agents/Agent';
 
@@ -27,12 +26,7 @@ export const getAgentFormAction = (id: number): AppThunk => {
 
 export const addAgentFormAction = (agent: Agent): AppThunk => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    const newAgent: AgentSaveRequest = {
-      instanceId: agent.instanceId,
-      nodeId: agent.node?.id,
-    };
-
-    await agentHttpClient.addAgent(newAgent);
+    await agentHttpClient.addAgent(agent);
 
     sendNotification('Operation Successful', 'Agent has been added successfully');
     history.push(`/${GeneralRoutes.Dashboard}/${DashboardRoutes.Agents}`);
@@ -41,13 +35,7 @@ export const addAgentFormAction = (agent: Agent): AppThunk => {
 
 export const updateAgentFormAction = (agent: Agent): AppThunk => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    const newAgent: AgentSaveRequest = {
-      id: agent.id,
-      instanceId: agent.instanceId,
-      nodeId: agent.node?.id,
-    };
-
-    await agentHttpClient.updateAgent(newAgent);
+    await agentHttpClient.updateAgent(agent);
 
     sendNotification('Operation Successful', 'Agent has been updated successfully');
     history.push(`/${GeneralRoutes.Dashboard}/${DashboardRoutes.Agents}`);

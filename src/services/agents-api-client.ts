@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Config } from 'config';
 import { Agent } from 'types/agents/Agent';
-import { AgentSaveRequest } from './../types/agents/AgentSaveRequest';
 import { AgentHttpClient } from './../types/agents/AgentHttpClient';
 
 const getAgent = (id: number): Promise<Agent> => {
@@ -22,7 +21,7 @@ const getAgents = (): Promise<Agent[]> => {
   }
 };
 
-const addAgent = (agent: AgentSaveRequest): Promise<void> => {
+const addAgent = (agent: Agent): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents`;
   try {
     return axios.post(endpoint, agent);
@@ -31,7 +30,7 @@ const addAgent = (agent: AgentSaveRequest): Promise<void> => {
   }
 };
 
-const updateAgent = (agent: AgentSaveRequest): Promise<void> => {
+const updateAgent = (agent: Agent): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${agent.id}`;
   try {
     return axios.put(endpoint, agent);

@@ -1,10 +1,9 @@
 import { Agent } from './Agent';
-import { AgentSaveRequest } from './AgentSaveRequest';
 
 export interface AgentHttpClient {
   getAgent: (id: number) => Promise<Agent>;
   getAgents: () => Promise<Agent[]>;
-  addAgent: (agent: AgentSaveRequest) => Promise<void>;
-  updateAgent: (agent: AgentSaveRequest) => Promise<void>;
+  addAgent: (agent: Agent) => Promise<void>;
+  updateAgent: (agent: Agent) => Promise<void>;
   deleteAgent: (id: number) => Promise<void>;
 }
