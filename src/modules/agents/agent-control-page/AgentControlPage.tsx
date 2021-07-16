@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Dropdown from 'components/dropdown';
+import { Node } from 'types/nodes/Node';
 import { Button, Col, Input, Row } from 'antd';
 import { isNil } from 'lodash';
 import { useEffect } from 'react';
@@ -18,7 +19,6 @@ import {
 import { useAppDispatch, useAppSelector } from 'store';
 import { getAgentFormSelector } from 'store/selectors/agent-form-selector';
 import { getNodeListSelector } from 'store/selectors/node-list-selector';
-import { Node } from 'types/nodes/Node';
 import { getNodeListAction } from 'store/actions/node-list-actions';
 
 const AgentControlPage = (): JSX.Element => {
@@ -65,7 +65,7 @@ const AgentControlPage = (): JSX.Element => {
   return (
     <>
       <Row className="form-group">
-        <Col span={12}>
+        <Col sm={24} md={12} lg={8} xxl={4}>
           <label className="label">Instance Id</label>
           <Input
             placeholder="Enter instance id"
@@ -75,7 +75,7 @@ const AgentControlPage = (): JSX.Element => {
         </Col>
       </Row>
       <Row className="form-group">
-        <Col span={12}>
+        <Col sm={24} md={12} lg={8} xxl={4}>
           <Dropdown
             options={options}
             selected={form.node?.id}

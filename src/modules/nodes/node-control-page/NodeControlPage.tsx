@@ -5,7 +5,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
-import { addNodeFormAction, clearNodeFormAction, getNodeFormAction, setNodeFormAction, updateNodeFormAction } from 'store/actions/node-form-actions';
+import {
+  addNodeFormAction,
+  clearNodeFormAction,
+  getNodeFormAction,
+  setNodeFormAction,
+  updateNodeFormAction,
+} from 'store/actions/node-form-actions';
 import { getNodeFormSelector } from 'store/selectors/node-form-selector';
 import { UserAction } from 'types/ui-actions/UserAction';
 
@@ -46,7 +52,7 @@ const NodeControlPage = (): JSX.Element => {
   return (
     <>
       <Row className="form-group">
-        <Col span={12}>
+        <Col sm={24} md={12} lg={8} xxl={4}>
           <label className="label">Node Name</label>
           <Input
             placeholder="Enter node name"
@@ -56,7 +62,7 @@ const NodeControlPage = (): JSX.Element => {
         </Col>
       </Row>
       <Row className="form-group">
-        <Col span={12}>
+        <Col sm={24} md={12} lg={8} xxl={4}>
           <label className="label">Node Description</label>
           <TextArea
             placeholder="Enter node description"
