@@ -1,10 +1,11 @@
+import { AgentSaveRequest } from './../types/agents/AgentSaveRequest';
 import axios from 'axios';
 import { Config } from 'config';
 import { Agent } from 'types/agents/Agent';
 import { AgentHttpClient } from './../types/agents/AgentHttpClient';
 
 const getAgent = (id: number): Promise<Agent> => {
-  const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
+  const endpoint = `${Config.ApiEndpoint}/agents/${id}`;
   try {
     return axios.get(endpoint).then(res => res.data);
   } catch (error) {
@@ -21,7 +22,7 @@ const getAgents = (): Promise<Agent[]> => {
   }
 };
 
-const addAgent = (agent: Agent): Promise<void> => {
+const addAgent = (agent: AgentSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents`;
   try {
     return axios.post(endpoint, agent);
@@ -30,7 +31,7 @@ const addAgent = (agent: Agent): Promise<void> => {
   }
 };
 
-const updateAgent = (agent: Agent): Promise<void> => {
+const updateAgent = (agent: AgentSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${agent.id}`;
   try {
     return axios.put(endpoint, agent);
@@ -48,7 +49,7 @@ const deleteAgent = (id: number): Promise<void> => {
   }
 };
 
-const nodeHttpClient: AgentHttpClient = {
+const agentHttpClient: AgentHttpClient = {
   getAgent,
   getAgents,
   addAgent,
@@ -56,4 +57,4 @@ const nodeHttpClient: AgentHttpClient = {
   deleteAgent,
 };
 
-export default nodeHttpClient;
+export default agentHttpClient;
