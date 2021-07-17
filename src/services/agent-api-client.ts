@@ -1,8 +1,8 @@
-import { AgentSaveRequest } from './../types/agents/AgentSaveRequest';
+import { AgentSaveRequest } from '../types/agents/AgentSaveRequest';
 import axios from 'axios';
 import { Config } from 'config';
 import { Agent } from 'types/agents/Agent';
-import { AgentHttpClient } from './../types/agents/AgentHttpClient';
+import { AgentHttpClient } from '../types/agents/AgentHttpClient';
 
 const getAgent = (id: number): Promise<Agent> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${id}`;

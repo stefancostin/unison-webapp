@@ -1,4 +1,4 @@
-import nodeHttpClient from 'services/nodes-api-client';
+import nodeHttpClient from 'services/node-api-client';
 import sendNotification from 'services/notification-service';
 import { history } from 'router/Router';
 import { GeneralRoutes, DashboardRoutes } from 'router/routes';

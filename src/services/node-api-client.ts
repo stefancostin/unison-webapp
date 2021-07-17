@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NodeHttpClient } from './../types/nodes/NodeHttpClient';
+import { NodeHttpClient } from '../types/nodes/NodeHttpClient';
 import { Config } from 'config';
 import { Node } from 'types/nodes/Node';
 import { NodeSaveRequest } from 'types/nodes/NodeSaveRequest';
