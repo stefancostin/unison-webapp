@@ -1,14 +1,16 @@
-import { Agent } from 'types/agents/Agent';
-import { AGENT_FORM__CLEAR_PROPERTIES, AGENT_FORM__SET_PROPERTIES } from 'store/events';
+import { ENTITY_FORM__CLEAR_PROPERTIES, ENTITY_FORM__SET_PROPERTIES } from 'store/events';
 import { BaseAction } from 'store/types';
+import { Entity } from 'types/entities/Entity';
 
-const initialState: Agent = {
+const initialState: Entity = {
   id: null,
-  instanceId: null,
+  entity: null,
+  primaryKey: null,
+  fields: null,
   node: null,
 };
 
-const agentFormReducer = (state: Agent = initialState, action: BaseAction<Agent>): Agent => {
+const entityFormReducer = (state: Entity = initialState, action: BaseAction<Entity>): Entity => {
   switch (action.type) {
     case ENTITY_FORM__SET_PROPERTIES: {
       return { ...state, ...action.data };
@@ -21,4 +23,4 @@ const agentFormReducer = (state: Agent = initialState, action: BaseAction<Agent>
   }
 };
 
-export default agentFormReducer;
+export default entityFormReducer;
