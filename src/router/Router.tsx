@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBrowserHistory } from 'history';
 import { Router as ReactRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from 'modules/dashboard';

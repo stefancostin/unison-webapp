@@ -1,10 +1,15 @@
+import Dropdown from 'components/dropdown';
 import { useState } from 'react';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { DropdownMenuItem } from 'components/dropdown/types';
 import { mockNodes } from 'modules/nodes/mock-data';
-import Dropdown from 'components/dropdown';
+import { useAppDispatch } from 'store';
+import { useHistory } from 'react-router-dom';
 
 const EntitiesPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+
   const [tmpSelected, setTmpSelected] = useState<number>();
 
   const handleMenuClick = (e: MenuInfo): void => {

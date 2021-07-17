@@ -10,6 +10,8 @@ export const store = configureStore({
   reducer: combineReducers({
     agentForm: agentFormReducer,
     agentList: agentListReducer,
+    entityForm: entityListReducer,
+    entityList: entityListReducer,
     nodeForm: nodeFormReducer,
     nodeList: nodeListReducer,
   }),
