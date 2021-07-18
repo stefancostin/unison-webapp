@@ -1,8 +1,8 @@
 import { TableData } from 'types/table-metadata/TableData';
 
-export interface AgentTableData extends TableData {
+export interface EntityTableData extends TableData {
   entity: string;
   primaryKey: string;
-  fields: string[];
+  fields: string;
   node: string;
 }
