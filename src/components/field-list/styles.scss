@@ -1,0 +1,23 @@
+.add-action-container {
+  display: flex;
+
+  & input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  & button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+.delete-action {
+  -webkit-transition: color 150ms linear;
+  -ms-transition: color 150ms linear;
+  transition: color 150ms linear;
+
+  &:hover {
+    color: #cc0000;
+  }
+}

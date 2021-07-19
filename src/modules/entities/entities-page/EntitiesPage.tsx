@@ -1,8 +1,4 @@
-import Dropdown from 'components/dropdown';
 import { useEffect, useRef, useState } from 'react';
-import { MenuInfo } from 'rc-menu/lib/interface';
-import { DropdownMenuItem } from 'components/dropdown/types';
-import { mockNodes } from 'modules/nodes/mock-data';
 import { useAppDispatch, useAppSelector } from 'store';
 import { useHistory } from 'react-router-dom';
 import { getEntityTableDataSelector } from 'store/selectors/entity-list-selector';
@@ -47,14 +43,6 @@ const EntitiesPage = (): JSX.Element => {
     setModalVisible(false);
   };
 
-  // TODO: Delete this
-  // const [tmpSelected, setTmpSelected] = useState<number>();
-  // const handleMenuClick = (e: MenuInfo): void => {
-  //   const selectedNode = mockNodes.find((node: any) => node.id === Number(e.key))?.id;
-  //   setTmpSelected(selectedNode);
-  // };
-  // const options: DropdownMenuItem[] = mockNodes.map(node => ({ id: node.id, name: node.name }));
-
   const columns: TableColumn<EntityTableData>[] = [
     {
       title: 'Entity Name',
@@ -84,18 +72,6 @@ const EntitiesPage = (): JSX.Element => {
       ),
     },
   ];
-
-  // return (
-  //   <>
-  //     <Dropdown
-  //       options={options}
-  //       selected={tmpSelected}
-  //       label="Node"
-  //       placeholder="Select Nodes"
-  //       handleClick={handleMenuClick}
-  //     />
-  //   </>
-  // );
 
   return (
     <>

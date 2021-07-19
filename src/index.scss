@@ -31,3 +31,9 @@ button {
   color: #ff0000;
   cursor: pointer;
 }
+
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
