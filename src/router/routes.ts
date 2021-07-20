@@ -1,5 +1,3 @@
-import { Route } from './types';
-
 export type ApplicationRoutes = typeof GeneralRoutes | typeof DashboardRoutes;
 
 export enum GeneralRoutes {
@@ -9,32 +7,8 @@ export enum GeneralRoutes {
 
 export enum DashboardRoutes {
   Agents = 'agents',
+  Connections = 'connections',
   Entities = 'entities',
   Logs = 'logs',
   Nodes = 'nodes',
 }
-
-export const routes: Route[] = [
-  {
-    path: GeneralRoutes.Dashboard,
-    breadcrumbName: 'Dashboard',
-    children: [
-      {
-        path: DashboardRoutes.Nodes,
-        breadcrumbName: 'Nodes',
-      },
-      {
-        path: DashboardRoutes.Agents,
-        breadcrumbName: 'Agents',
-      },
-      {
-        path: DashboardRoutes.Entities,
-        breadcrumbName: 'Entities',
-      },
-      {
-        path: DashboardRoutes.Logs,
-        breadcrumbName: 'Logs',
-      },
-    ],
-  },
-];

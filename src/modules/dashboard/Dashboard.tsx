@@ -3,14 +3,7 @@ import { get } from 'lodash';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import {
-  ApartmentOutlined,
-  DesktopOutlined,
-  EyeOutlined,
-  NotificationOutlined,
-  SyncOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { ApartmentOutlined, CloudOutlined, DesktopOutlined, EyeOutlined, SyncOutlined } from '@ant-design/icons';
 import { DashboardRoutes, GeneralRoutes } from 'router/routes';
 import DashboardRouter from 'router/DashboardRouter';
 import Breadcrumb from 'components/breadcrumb';
@@ -34,14 +27,16 @@ export const Dashboard = (): JSX.Element => {
     const page = get(routeSegments, '2');
 
     switch (page) {
-      case DashboardRoutes.Nodes:
+      case DashboardRoutes.Connections:
         return String(1);
-      case DashboardRoutes.Agents:
+      case DashboardRoutes.Nodes:
         return String(2);
-      case DashboardRoutes.Entities:
+      case DashboardRoutes.Agents:
         return String(3);
-      case DashboardRoutes.Logs:
+      case DashboardRoutes.Entities:
         return String(4);
+      case DashboardRoutes.Logs:
+        return String(5);
       default:
         return String(1);
     }
@@ -54,16 +49,19 @@ export const Dashboard = (): JSX.Element => {
           <span>{collapsed ? 'U' : 'Unison'}</span>
         </div>
         <Menu theme="dark" defaultSelectedKeys={[getDefaultKey()]} mode="inline">
-          <Menu.Item key="1" icon={<ApartmentOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Nodes)}>
+          <Menu.Item key="1" icon={<CloudOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Connections)}>
+            Connections
+          </Menu.Item>
+          <Menu.Item key="2" icon={<ApartmentOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Nodes)}>
             Nodes
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Agents)}>
+          <Menu.Item key="3" icon={<DesktopOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Agents)}>
             Agents
           </Menu.Item>
-          <Menu.Item key="3" icon={<SyncOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Entities)}>
+          <Menu.Item key="4" icon={<SyncOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Entities)}>
             Entities
           </Menu.Item>
-          <Menu.Item key="4" icon={<EyeOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Logs)}>
+          <Menu.Item key="5" icon={<EyeOutlined />} onClick={() => handleRouteChange(DashboardRoutes.Logs)}>
             Logs
           </Menu.Item>
         </Menu>

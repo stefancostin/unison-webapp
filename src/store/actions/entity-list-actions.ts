@@ -1,4 +1,4 @@
-import entityHttpClient from 'services/entity-api-client';
+import entityHttpClient from 'http/entity-api-client';
 import { Entity } from 'types/entities/Entity';
 import { ENTITY_LIST__SET_ITEMS } from 'store/events';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';

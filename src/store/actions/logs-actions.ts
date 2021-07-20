@@ -1,5 +1,5 @@
+import logsHttpClient from 'http/logs-api-client';
 import { Log } from 'types/logs/Log';
-import logsHttpClient from 'services/logs-api-client';
 import { LOGS__SET_PROPERTIES } from './../events';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';
 

@@ -7,6 +7,7 @@ import entityFormReducer from './reducers/entity-form-reducer';
 import entityListReducer from './reducers/entity-list-reducer';
 import nodeFormReducer from './reducers/node-form-reducer';
 import nodeListReducer from './reducers/node-list-reducer';
+import connectionsReducer from './reducers/connections-reducer';
 import logsReducer from './reducers/logs-reducer';
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
     entityList: entityListReducer,
     nodeForm: nodeFormReducer,
     nodeList: nodeListReducer,
+    connections: connectionsReducer,
     logs: logsReducer,
   }),
 });

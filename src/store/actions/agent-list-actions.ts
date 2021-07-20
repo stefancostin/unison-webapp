@@ -1,4 +1,4 @@
-import agentHttpClient from 'services/agent-api-client';
+import agentHttpClient from 'http/agent-api-client';
 import { AGENT_LIST__SET_ITEMS } from 'store/events';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';
 import { Agent } from 'types/agents/Agent';

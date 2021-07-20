@@ -1,8 +1,8 @@
-import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { DashboardRoutes } from './routes';
 import AgentControlPage from 'modules/agents/agent-control-page';
 import AgentsPage from 'modules/agents/agents-page';
+import ConnectionsPage from 'modules/connections';
 import EntityControlPage from 'modules/entities/entity-control-page';
 import EntitiesPage from 'modules/entities/entities-page';
 import LogsPage from 'modules/logs';
@@ -19,6 +19,9 @@ const DashboardRouter = (): JSX.Element => {
       </Route>
       <Route exact path={`${path}/${DashboardRoutes.Agents}`}>
         <AgentsPage />
+      </Route>
+      <Route exact path={`${path}/${DashboardRoutes.Connections}`}>
+        <ConnectionsPage />
       </Route>
       <Route exact path={[`${path}/${DashboardRoutes.Entities}/add`, `${path}/${DashboardRoutes.Entities}/:id/edit`]}>
         <EntityControlPage />

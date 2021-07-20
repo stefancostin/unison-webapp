@@ -1,4 +1,4 @@
-import agentHttpClient from 'services/agent-api-client';
+import agentHttpClient from 'http/agent-api-client';
 import sendNotification from 'services/notification-service';
 import { getNodeListAction } from './node-list-actions';
 import { history } from 'router/Router';

@@ -1,4 +1,4 @@
-import nodeHttpClient from 'services/node-api-client';
+import nodeHttpClient from 'http/node-api-client';
 import { NODE_LIST__SET_ITEMS } from 'store/events';
 import { AppDispatch, AppThunk, BaseAction, RootState } from 'store/types';
 import { Node } from 'types/nodes/Node';

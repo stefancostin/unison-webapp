@@ -1,4 +1,4 @@
-import entityHttpClient from 'services/entity-api-client';
+import entityHttpClient from 'http/entity-api-client';
 import sendNotification from 'services/notification-service';
 import { getNodeListAction } from './node-list-actions';
 import { history } from 'router/Router';
