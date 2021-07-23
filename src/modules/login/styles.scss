@@ -1,0 +1,30 @@
+.login-logo {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-weight: bold;
+  color: #484848;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 360px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  margin-top: 80px;
+  padding: 50px;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+}
+
+.login-action {
+  width: 200px;
+}
+
+.login-button {
+  width: 200px;
+  margin-top: 5px;
+}
