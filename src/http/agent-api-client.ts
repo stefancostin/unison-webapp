@@ -1,52 +1,68 @@
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { AgentSaveRequest } from '../types/agents/AgentSaveRequest';
-import axios from 'axios';
 import { Config } from 'config';
 import { Agent } from 'types/agents/Agent';
 import { AgentHttpClient } from '../types/agents/AgentHttpClient';
+import { handleResponse, handleUnauthorized } from './http-handlers';
 
 const getAgent = (id: number): Promise<Agent> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${id}`;
-  try {
-    return axios.get(endpoint).then(res => res.data);
-  } catch (error) {
-    return Promise.reject({});
-  }
+
+  return axios
+    .get(endpoint)
+    .then((res: AxiosResponse) => handleResponse<Agent>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const getAgents = (): Promise<Agent[]> => {
   const endpoint = `${Config.ApiEndpoint}/agents`;
-  try {
-    return axios.get(endpoint).then(res => res.data);
-  } catch (error) {
-    return Promise.reject([]);
-  }
+
+  return axios
+    .get(endpoint)
+    .then((res: AxiosResponse) => handleResponse<Agent[]>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const addAgent = (agent: AgentSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents`;
-  try {
-    return axios.post(endpoint, agent);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .post(endpoint, agent)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const updateAgent = (agent: AgentSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${agent.id}`;
-  try {
-    return axios.put(endpoint, agent);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .put(endpoint, agent)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const deleteAgent = (id: number): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/agents/${id}`;
-  try {
-    return axios.delete(endpoint);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .delete(endpoint)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const agentHttpClient: AgentHttpClient = {

@@ -1,52 +1,68 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { NodeHttpClient } from '../types/nodes/NodeHttpClient';
 import { Config } from 'config';
 import { Node } from 'types/nodes/Node';
 import { NodeSaveRequest } from 'types/nodes/NodeSaveRequest';
+import { handleResponse, handleUnauthorized } from './http-handlers';
 
 const getNode = (id: number): Promise<Node> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
-  try {
-    return axios.get(endpoint).then(res => res.data);
-  } catch (error) {
-    return Promise.reject({});
-  }
+
+  return axios
+    .get(endpoint)
+    .then((res: AxiosResponse) => handleResponse<Node>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const getNodes = (): Promise<Node[]> => {
   const endpoint = `${Config.ApiEndpoint}/nodes`;
-  try {
-    return axios.get(endpoint).then(res => res.data);
-  } catch (error) {
-    return Promise.reject([]);
-  }
+
+  return axios
+    .get(endpoint)
+    .then((res: AxiosResponse) => handleResponse<Node[]>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const addNode = (node: NodeSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes`;
-  try {
-    return axios.post(endpoint, node);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .post(endpoint, node)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const updateNode = (node: NodeSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${node.id}`;
-  try {
-    return axios.put(endpoint, node);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .put(endpoint, node)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const deleteNode = (id: number): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
-  try {
-    return axios.delete(endpoint);
-  } catch (error) {
-    return Promise.reject();
-  }
+
+  return axios
+    .delete(endpoint)
+    .then((res: AxiosResponse) => handleResponse<void>(res))
+    .catch((err: AxiosError) => {
+      handleUnauthorized(err);
+      throw err;
+    });
 };
 
 const nodeHttpClient: NodeHttpClient = {
