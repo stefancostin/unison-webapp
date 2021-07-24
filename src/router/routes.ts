@@ -1,7 +1,7 @@
 export type ApplicationRoutes = typeof GeneralRoutes | typeof DashboardRoutes;
 
 export enum GeneralRoutes {
-  Account = 'account',
+  Login = 'login',
   Dashboard = 'dashboard',
 }
 
