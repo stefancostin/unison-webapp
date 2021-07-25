@@ -1,9 +1,18 @@
 import './styles.scss';
+import accountService from 'services/account-service';
+import SubMenu from 'antd/lib/menu/SubMenu';
 import { get } from 'lodash';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { ApartmentOutlined, CloudOutlined, DesktopOutlined, EyeOutlined, SyncOutlined } from '@ant-design/icons';
+import {
+  ApartmentOutlined,
+  CloudOutlined,
+  DesktopOutlined,
+  DownOutlined,
+  EyeOutlined,
+  SyncOutlined,
+} from '@ant-design/icons';
 import { DashboardRoutes, GeneralRoutes } from 'router/routes';
 import DashboardRouter from 'router/DashboardRouter';
 import Breadcrumb from 'components/breadcrumb';
@@ -12,13 +21,21 @@ const { Header, Content, Footer, Sider } = Layout;
 
 export const Dashboard = (): JSX.Element => {
   const history = useHistory();
+
   const [collapsed, setCollapsed] = useState<boolean>(false);
+
+  const account = accountService.getAccount();
 
   const onCollapse = (): void => {
     setCollapsed(!collapsed);
   };
 
-  const handleRouteChange = (route: DashboardRoutes) => {
+  const handleLogout = (): void => {
+    accountService.logout();
+    history.push(`/${GeneralRoutes.Login}`);
+  };
+
+  const handleRouteChange = (route: DashboardRoutes): void => {
     history.push(`/${GeneralRoutes.Dashboard}/${route}`);
   };
 
@@ -67,7 +84,13 @@ export const Dashboard = (): JSX.Element => {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }} />
+        <Header className="site-layout-background header" style={{ padding: 0 }}>
+          <Menu onClick={handleLogout} mode="horizontal">
+            <SubMenu key="AccountMenu" icon={<DownOutlined />} title={`${account.firstName} ${account.lastName}`}>
+              <Menu.Item key="logout">Logout</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Header>
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb />
           <section className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>

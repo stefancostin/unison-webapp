@@ -1,10 +1,25 @@
 import './styles.scss';
 import Container from 'components/container';
+import sendNotification from 'services/notification-service';
 import { Button, Col, Input, Row } from 'antd';
 import { useAppDispatch } from 'store';
+import { useState } from 'react';
+import { isEmpty } from 'lodash';
+import { authenticateAccountAction } from 'store/actions/account-actions';
 
 const LoginPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
+
+  const [username, setUsername] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  const handleSave = (): void => {
+    if (isEmpty(username) || isEmpty(password)) {
+      sendNotification('Incomplete Credentials', 'Both username and password must be provided', false);
+      return;
+    }
+    dispatch(authenticateAccountAction({ username, password }));
+  };
 
   return (
     <Container>
@@ -20,8 +35,8 @@ const LoginPage = (): JSX.Element => {
             <Input
               className="login-action"
               placeholder="Enter username"
-              // value={form.name}
-              onChange={e => console.log(e)}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             />
           </Col>
         </Row>
@@ -31,14 +46,14 @@ const LoginPage = (): JSX.Element => {
             <Input.Password
               className="login-action"
               placeholder="Enter password"
-              // value={form.name}
-              onChange={e => console.log(e)}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
           </Col>
         </Row>
         <Row className="form-group">
           <Col>
-            <Button type="primary" className="login-button" onClick={() => console.log('login')}>
+            <Button type="primary" className="login-button" onClick={handleSave}>
               Login
             </Button>
           </Col>

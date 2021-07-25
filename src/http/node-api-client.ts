@@ -3,13 +3,15 @@ import { NodeHttpClient } from '../types/nodes/NodeHttpClient';
 import { Config } from 'config';
 import { Node } from 'types/nodes/Node';
 import { NodeSaveRequest } from 'types/nodes/NodeSaveRequest';
-import { handleResponse, handleUnauthorized } from './http-handlers';
+import { handleResponse, handleUnauthorized } from './helpers/http-handlers';
+import { getHttpConfig } from './helpers/http-config';
 
 const getNode = (id: number): Promise<Node> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .get(endpoint)
+    .get(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<Node>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -19,9 +21,10 @@ const getNode = (id: number): Promise<Node> => {
 
 const getNodes = (): Promise<Node[]> => {
   const endpoint = `${Config.ApiEndpoint}/nodes`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .get(endpoint)
+    .get(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<Node[]>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -31,9 +34,10 @@ const getNodes = (): Promise<Node[]> => {
 
 const addNode = (node: NodeSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .post(endpoint, node)
+    .post(endpoint, node, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -43,9 +47,10 @@ const addNode = (node: NodeSaveRequest): Promise<void> => {
 
 const updateNode = (node: NodeSaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${node.id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .put(endpoint, node)
+    .put(endpoint, node, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -55,9 +60,10 @@ const updateNode = (node: NodeSaveRequest): Promise<void> => {
 
 const deleteNode = (id: number): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/nodes/${id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .delete(endpoint)
+    .delete(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);

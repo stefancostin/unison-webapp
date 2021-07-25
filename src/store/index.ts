@@ -9,9 +9,11 @@ import nodeFormReducer from './reducers/node-form-reducer';
 import nodeListReducer from './reducers/node-list-reducer';
 import connectionsReducer from './reducers/connections-reducer';
 import logsReducer from './reducers/logs-reducer';
+import accountReducer from './reducers/account-reducer';
 
 export const store = configureStore({
   reducer: combineReducers({
+    account: accountReducer,
     agentForm: agentFormReducer,
     agentList: agentListReducer,
     entityForm: entityFormReducer,

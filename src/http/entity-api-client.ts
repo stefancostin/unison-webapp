@@ -3,13 +3,15 @@ import { Config } from 'config';
 import { EntityHttpClient } from '../types/entities/EntityHttpClient';
 import { EntitySaveRequest } from '../types/entities/EntitySaveRequest';
 import { Entity } from '../types/entities/Entity';
-import { handleResponse, handleUnauthorized } from './http-handlers';
+import { handleResponse, handleUnauthorized } from './helpers/http-handlers';
+import { getHttpConfig } from './helpers/http-config';
 
 const getEntity = (id: number): Promise<Entity> => {
   const endpoint = `${Config.ApiEndpoint}/entities/${id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .get(endpoint)
+    .get(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<Entity>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -19,9 +21,10 @@ const getEntity = (id: number): Promise<Entity> => {
 
 const getEntities = (): Promise<Entity[]> => {
   const endpoint = `${Config.ApiEndpoint}/entities`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .get(endpoint)
+    .get(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<Entity[]>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -31,9 +34,10 @@ const getEntities = (): Promise<Entity[]> => {
 
 const addEntity = (entity: EntitySaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/entities`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .post(endpoint, entity)
+    .post(endpoint, entity, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -43,9 +47,10 @@ const addEntity = (entity: EntitySaveRequest): Promise<void> => {
 
 const updateEntity = (entity: EntitySaveRequest): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/entities/${entity.id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .put(endpoint, entity)
+    .put(endpoint, entity, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
@@ -55,9 +60,10 @@ const updateEntity = (entity: EntitySaveRequest): Promise<void> => {
 
 const deleteEntity = (id: number): Promise<void> => {
   const endpoint = `${Config.ApiEndpoint}/entities/${id}`;
+  const httpConfig = getHttpConfig();
 
   return axios
-    .delete(endpoint)
+    .delete(endpoint, httpConfig)
     .then((res: AxiosResponse) => handleResponse<void>(res))
     .catch((err: AxiosError) => {
       handleUnauthorized(err);
