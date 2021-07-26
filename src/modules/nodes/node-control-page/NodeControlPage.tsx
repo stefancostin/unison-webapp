@@ -13,7 +13,7 @@ import {
   updateNodeFormAction,
 } from 'store/actions/node-form-actions';
 import { getNodeFormSelector } from 'store/selectors/node-form-selector';
-import { UserAction } from 'types/ui-actions/UserAction';
+import { UserAction } from 'types/user-actions/UserAction';
 
 const { TextArea } = Input;
 

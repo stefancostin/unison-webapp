@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MenuInfo } from 'rc-menu/lib/interface';
-import { UserAction } from 'types/ui-actions/UserAction';
+import { UserAction } from 'types/user-actions/UserAction';
 import { DropdownMenuItem } from 'components/dropdown/types';
 import {
   addAgentFormAction,
