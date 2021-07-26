@@ -9,5 +9,6 @@ export interface LogsTableData extends TableData {
   updatedRecords: number;
   deletedRecords: number;
   completed: boolean;
+  errorMessage: string;
   date: string;
 }

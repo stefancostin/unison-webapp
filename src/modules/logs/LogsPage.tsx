@@ -62,6 +62,11 @@ const LogsPage = (): JSX.Element => {
       ),
     },
     {
+      title: 'Error',
+      dataIndex: 'errorMessage',
+      key: 'errorMessage',
+    },
+    {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',

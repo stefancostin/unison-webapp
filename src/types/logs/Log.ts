@@ -11,5 +11,6 @@ export interface Log {
   updatedRecords: number;
   deletedRecords: number;
   completed: boolean;
+  errorMessage: string;
   date: string;
 }

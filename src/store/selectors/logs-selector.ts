@@ -21,6 +21,7 @@ export const getLogsTableDataSelector = (state: RootState): LogsTableData[] => {
     updatedRecords: log.updatedRecords,
     deletedRecords: log.deletedRecords,
     completed: log.completed,
+    errorMessage: log.errorMessage,
     date: isEmpty(log.date) ? null : dayjs(log.date).format(DateTimeFormat),
   }));
 };
