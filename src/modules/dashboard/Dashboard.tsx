@@ -86,7 +86,7 @@ export const Dashboard = (): JSX.Element => {
       <Layout className="site-layout">
         <Header className="site-layout-background header" style={{ padding: 0 }}>
           <Menu onClick={handleLogout} mode="horizontal">
-            <SubMenu key="AccountMenu" icon={<DownOutlined />} title={`${account.firstName} ${account.lastName}`}>
+            <SubMenu key="AccountMenu" icon={<DownOutlined />} title={`${account?.firstName} ${account?.lastName}`}>
               <Menu.Item key="logout">Logout</Menu.Item>
             </SubMenu>
           </Menu>
